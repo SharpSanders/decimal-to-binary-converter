@@ -134,6 +134,8 @@ Add a history section listing previous conversions.
 Add a toggle for light/dark themes and more advanced styling.
 
 Add tests for the conversion logic.
+**Live Site**
+https://sharpsanders.github.io/decimal-to-binary-converter/
 
 Author
 Created by Trevyn Sanders.
