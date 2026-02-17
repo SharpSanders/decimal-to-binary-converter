@@ -1,141 +1,108 @@
 # Decimal to Binary Converter
 
-A simple web app that converts a non-negative decimal number to its binary representation, with an optional call stack animation that visually demonstrates how recursion works.
+A responsive web application that converts non-negative decimal numbers into their binary representation.
 
-## Demo
+Includes an optional call stack animation to visually demonstrate how recursion executes step-by-step.
 
-- Enter a decimal number in the input field.
-- Click **Convert** or press **Enter**.
-- The binary result will appear in the output box.
-- If you enter **5**, you’ll also see a call stack animation that walks through each recursive step.
+## Live Demo
+https://sharpsanders.github.io/decimal-to-binary-converter/
 
-## Tech Stack
+![Decimal to Binary Converter Screenshot](./img/Screenshot-decimal-to-binary-converter.png)
 
-- **HTML** – structure and layout
-- **CSS** – styling and responsive design
-- **JavaScript** – input handling, recursion, and call stack animation
+---
 
 ## Features
 
-- Converts any non-negative integer to binary.
-- Handles invalid input with a clear alert message.
-- Allows submission via button click or Enter key.
-- Special case for input `5`:
-  - Shows a step-by-step **call stack animation**.
-  - Explains what each recursive call returns and when it “pops” off the stack.
-- Responsive layout using modern CSS (`clamp`, flexbox, media queries).
+- Converts any non-negative integer to binary
+- Handles invalid input (empty, non-numeric, negative)
+- Submit via button click or Enter key
+- Recursive conversion algorithm
+- Optional call stack animation (demonstrates recursion flow)
+- Responsive layout using modern CSS (`clamp`, flexbox, media queries)
 
-## How to Run the Project
+---
 
-1. **Clone or download** the repository:
+## Tech Stack
 
-   ```bash
-   git clone https://github.com/SharpSanders/decimal-to-binary-converter.git
-   cd decimal-to-binary-converter
-Open the app:
+- HTML5
+- CSS3
+- JavaScript (ES6+)
 
-Option A: Double-click index.html to open it in your browser.
+No frameworks or external libraries.
 
-Option B (recommended during development): Use a local server such as the Live Server extension in VS Code.
+---
 
-Once open, you should see the Decimal to Binary Converter interface.
+## Concepts Demonstrated
 
-How to Use
-In the “Enter a decimal number” input, type a non-negative integer (0 or greater).
+- Recursive function design
+- Base case vs recursive case handling
+- Using `Math.floor()` and modulo operations
+- DOM manipulation and dynamic updates
+- Timed UI updates using `setTimeout`
+- Input validation and event handling
 
-Click Convert or press Enter.
+---
 
-The binary result will appear in the highlighted output box.
+## How It Works
 
-Special behavior:
+### Conversion Algorithm
 
-If you enter 5, the app:
+The core function uses recursion:
 
-Shows “Call Stack Animation” in the result area.
+```js
+function decimalToBinary(input) {
+  if (input === 0 || input === 1) {
+    return String(input);
+  }
+  return decimalToBinary(Math.floor(input / 2)) + (input % 2);
+}
+Base case: returns "0" or "1".
 
-Animates three frames inside the Call stack section, explaining:
+Recursive case: calls itself with Math.floor(input / 2) and appends the remainder.
 
-decimalToBinary(1) (base case)
+This builds the binary string from most significant bit to least.
 
-decimalToBinary(2)
+Call Stack Animation
+When a specific input (e.g., 5) is entered:
 
-decimalToBinary(5)
+The app visually simulates recursive calls.
 
-After the animation finishes, it displays the final binary result for 5.
+Frames are added to the DOM.
 
-How It Works (Recursion + Call Stack)
-The core logic lives in script.js:
+Each frame explains what the function is returning.
 
-decimalToBinary(input) is a recursive function:
+Frames are removed as they “pop” off the call stack.
 
-Base case: if input is 0 or 1, it returns that value as a string.
+Final result is displayed after the animation completes.
 
-Recursive case:
-
-Calls itself with Math.floor(input / 2).
-
-Appends (input % 2) to the result.
-
-This builds the binary representation from the most significant bit to the least.
-
-checkUserInput():
-
-Parses and validates the value from the input field.
-
-Shows an alert if the input is empty, not a number, or negative.
-
-If the input is 5, it triggers showAnimation(); otherwise, it directly shows the binary result.
-
-showAnimation():
-
-Uses a predefined animationData array.
-
-Schedules updates with setTimeout to:
-
-Add frames for each recursive call to the DOM.
-
-Replace their text with an explanation message.
-
-Remove them after a delay.
-
-After the animation, it sets the final result text to decimalToBinary(5).
-
-This combination gives a visual, step-by-step demonstration of how the call stack behaves when using recursion.
+This provides a simplified visualization of recursion execution.
 
 Project Structure
-text
-Copy code
 decimal-to-binary-converter/
-├── index.html   # Markup for the converter UI and call stack section
-├── styles.css   # Styling for layout, colors, and responsive design
-└── script.js    # Logic for input handling, recursion, and animation
+├── index.html
+├── styles.css
+└── script.js
 What I Practiced
-Working with the DOM API (getElementById, event listeners, etc.).
+Writing and reasoning through recursive functions
 
-Implementing and understanding recursive functions.
+Visualizing call stack behavior
 
-Visualizing the call stack using timed DOM updates.
+Managing asynchronous UI updates with setTimeout
 
-Using setTimeout for basic UI animations.
+Validating and sanitizing user input
 
-Building a small, self-contained front-end project suitable for a portfolio.
+Building a self-contained interactive utility
 
 Future Improvements
-Add support for:
+Show call stack animation for any valid input
 
-Larger numbers with formatted output.
+Add conversion history
 
-Negative numbers using two’s complement (or clearly rejecting them in the UI).
+Support negative numbers (two’s complement)
 
-Show the call stack animation for any valid input, not just 5.
+Add unit tests for conversion logic
 
-Add a history section listing previous conversions.
+UI toggle for themes
 
-Add a toggle for light/dark themes and more advanced styling.
-
-Add tests for the conversion logic.
-**Live Site**
-https://sharpsanders.github.io/decimal-to-binary-converter/
-
-Author
-Created by Trevyn Sanders.
+Built by Trevyn Sanders
+GitHub: https://github.com/SharpSanders
